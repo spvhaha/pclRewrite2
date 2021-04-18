@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.4.1_02" class="java.beans.XMLDecoder"> 
+ <object class="java.util.HashMap">
+  
+  <void method="put"> 
+   <string>util.pwayframework.ResultNotFoundException</string> 
+   <object class="util.exception.TandemErrorVO"> 
+    <void property="appendFlag"> 
+     <boolean>false</boolean> 
+    </void> 
+    <void property="className"> 
+     <string>ResultNotFoundException</string> 
+    </void> 
+    <void property="code"> 
+     <int>1</int> 
+    </void> 
+    <void property="level"> 
+     <string>FINE</string> 
+    </void> 
+    <void property="text"> 
+     <string>APPNOTESRV: No Data Available.</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="put"> 
+   <string>persistence.core.exceptions.UncategorizedSQLException</string> 
+   <object class="util.exception.TandemErrorVO"> 
+    <void property="appendFlag"> 
+     <boolean>true</boolean> 
+    </void> 
+    <void property="className"> 
+     <string>DataAccessException</string> 
+    </void> 
+    <void property="code"> 
+     <int>2</int> 
+    </void> 
+    <void property="level"> 
+     <string>ESCALATE</string> 
+    </void> 
+    <void property="text"> 
+     <string>APPNOTESRV : Data Access Error</string> 
+    </void> 
+   </object> 
+  </void>  
+  
+  <void method="put"> 
+   <string>util.pwayframework.ServiceException</string> 
+   <object class="util.exception.TandemErrorVO"> 
+    <void property="appendFlag"> 
+     <boolean>false</boolean> 
+    </void> 
+    <void property="className"> 
+     <string>ServiceException</string> 
+    </void> 
+    <void property="code"> 
+     <int>3</int> 
+    </void> 
+    <void property="level"> 
+     <string>INFO</string> 
+    </void> 
+    <void property="text"> 
+     <string>System Processing Error. APPNOTESRV : Please contact help desk.</string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="put"> 
+   <string>util.pwayframework.ServiceProviderException</string> 
+   <object class="util.exception.TandemErrorVO"> 
+    <void property="appendFlag"> 
+     <boolean>true</boolean> 
+    </void> 
+    <void property="className"> 
+     <string>ServiceProviderException</string> 
+    </void> 
+    <void property="code"> 
+     <int>4</int> 
+    </void> 
+    <void property="level"> 
+     <string>ESCALATE</string> 
+    </void> 
+    <void property="text"> 
+     <string> Error. </string> 
+    </void> 
+   </object> 
+  </void> 
+  
+  <void method="put"> 
+   <string>business.services.impl.ValidationFailureException</string> 
+   <object class="util.exception.TandemErrorVO"> 
+    <void property="appendFlag"> 
+     <boolean>true</boolean> 
+    </void> 
+    <void property="className"> 
+     <string>ValidationFailureException</string> 
+    </void> 
+    <void property="code"> 
+     <int>4</int> 
+    </void> 
+    <void property="level"> 
+     <string>INFO</string> 
+    </void> 
+    <void property="text"> 
+     <string>Messaging Fault, APPNOTESRV </string> 
+    </void> 
+   </object> 
+  </void> 
+
+  <void method="put"> 
+   <string>util.pwayframework.MessageHandlerException</string> 
+   <object class="util.exception.TandemErrorVO"> 
+    <void property="appendFlag"> 
+     <boolean>false</boolean> 
+    </void> 
+    <void property="className"> 
+     <string>MessageHandlerException</string> 
+    </void> 
+    <void property="code"> 
+     <int>4</int> 
+    </void> 
+    <void property="level"> 
+     <string>INFO</string> 
+    </void> 
+    <void property="text"> 
+     <string>System Processing Error. APPNOTESRV: Please contact help desk.</string> 
+    </void> 
+   </object> 
+  </void>
+
+  <void method="put"> 
+   <string>Default</string> 
+   <object class="util.exception.TandemErrorVO"> 
+    <void property="appendFlag"> 
+     <boolean>true</boolean> 
+    </void> 
+    <void property="className"> 
+     <string>Default</string> 
+    </void> 
+    <void property="code"> 
+     <int>5</int> 
+    </void> 
+    <void property="level"> 
+     <string>ESCALATE</string> 
+    </void> 
+    <void property="text"> 
+     <string>APPNOTESRV : Uncategorized Error</string> 
+    </void> 
+   </object> 
+  </void> 
+ </object> 
+</java> 

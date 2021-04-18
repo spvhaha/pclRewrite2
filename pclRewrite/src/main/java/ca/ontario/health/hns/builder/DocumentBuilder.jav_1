@@ -1,0 +1,224 @@
+package ca.ontario.health.hns.builder;
+
+/*import ca.ontario.health.hns.ejb.dal.dao.ApplicationManagementDao;
+import ca.ontario.health.hns.ejb.dal.domainmodel.ApplicationCore;
+import ca.ontario.health.hns.ejb.dal.domainmodel.Contact;
+import ca.ontario.health.hns.ejb.dal.domainmodel.Delegate;
+import ca.ontario.health.hns.ejb.dal.exception.BPCSException;
+import ca.ontario.health.hns.ejb.dal.utils.ErrorCodes;
+import ca.ontario.health.hns.ejb.dal.utils.StringUtils;*/
+
+import java.util.logging.Logger;
+
+/**
+ * 
+ * @author t873209
+ *  this class is a helper class for  application number reporting. 
+ */
+public class DocumentBuilder {
+	public static Logger logger = Logger.getLogger(DocumentBuilder.class.getCanonicalName());
+
+	/**
+	 * Generate Address
+	 * 
+	 * @param app
+	 * @param dao
+	 * @return
+	 * @throws Exception
+	 */
+	/*static String generateAddress(ApplicationCore app, ApplicationManagementDao dao) throws Exception {
+
+		logger.info("generateAddress :" + app);
+		String str = "Contact Information is not found";
+		String useDelegateIndicator = app.getUseDelegateIndicator();
+		Contact cont = app.getContact();
+
+		if (useDelegateIndicator != null && useDelegateIndicator.toLowerCase().equals("y")) {
+			Delegate del = getDelegate(app.getApplicationNumber(), dao);
+			if (del != null) {
+				String country = "CAN".equals(del.getCountryCode()) ? "" : del.getCountryCode();
+				str = cont.getContactFirstName() + " "
+						+ (cont.getContactMiddleName() == null ? "" : cont.getContactMiddleName() + " ")
+						+ cont.getContactLastName() + "\n" + "c/o " + del.getFirstName() + " "
+						+ (del.getMiddleName() == null ? "" : del.getMiddleName() + " ") + del.getLastName() + "\n"
+						+ del.getAddress1() + "\n" + del.getCity() + " " + del.getProvinceCode() + " "
+						+ StringUtils.formatPostalCode(del.getPostalCode()) + "\n" + country;
+			} else
+				throw new BPCSException("No Delegate Found", ErrorCodes.CONTACT_NOT_FOUND);
+		} else {
+			str = cont.getContactFirstName() + " "
+					+ (cont.getContactMiddleName() == null ? "" : cont.getContactMiddleName() + " ")
+					+ cont.getContactLastName() + "\n" + cont.getContactAddr1() + "\n"
+					+ (cont.getContactAddr2() == null ? "" : cont.getContactAddr2() + "\n") + cont.getContactCity()
+					+ " " + cont.getContactProvCd() + " " + StringUtils.formatPostalCode(cont.getContactPostalCd());
+			String country =cont.getCountryCode();
+			if(country!=null&&!"CAN".equalsIgnoreCase(country)){
+				str=str+ "\n" + country;
+			}
+		}
+		return str;
+	}
+	*/
+	/**
+	 * Generate Address for imr header
+	 * 
+	 * @param app
+	 * @param dao
+	 * @return
+	 * @throws BPCSException
+	 */
+	static String generateAddressImrHeader(ApplicationCore app, ApplicationManagementDao dao) throws BPCSException {
+
+		logger.info("generateAddressImrHeader :" + app);
+		String str = "Contact Information is not found";
+		String useDelegateIndicator = app.getUseDelegateIndicator();
+		Contact cont = app.getContact();
+
+		if (useDelegateIndicator != null && useDelegateIndicator.toLowerCase().equals("y")) {
+			Delegate del = getDelegate(app.getApplicationNumber(), dao);
+			if (del != null) {
+				System.out.println("Delegate address: "+del.toString());
+				String country = "CAN".equals(del.getCountryCode()) ? "" : del.getCountryCode();
+				str =  del.getAddress1() + "\n" + del.getCity() + " " + del.getProvinceCode() + "  "
+						+ StringUtils.formatPostalCode(del.getPostalCode()) + "\n" + country;
+			
+			
+			} else
+				throw new BPCSException("No Delegate Found", ErrorCodes.CONTACT_NOT_FOUND);
+		} else {
+			str =  cont.getContactAddr1() + "\n"
+			+ buildAddr2(cont) + cont.getContactCity()
+			+ " " + cont.getContactProvCd() + "  " + StringUtils.formatPostalCode(cont.getContactPostalCd());
+	String country =cont.getCountryCode();
+			if(country!=null&&!"CAN".equalsIgnoreCase(country)){
+				str=str+ "\n" + country;
+			}
+		}
+		return str;
+	}
+	
+	private static String buildAddr2(Contact cont){
+		if(cont.getContactAddr2()==null){
+			return "";
+			
+		}
+		if(cont.getContactAddr2().trim().equalsIgnoreCase("")){
+			return "";
+			
+		}
+		return cont.getContactAddr2() + "\n";
+		
+	}
+
+
+	/**
+	 * Generate ImrHeaderName
+	 * 
+	 * @param app
+	 * @param dao
+	 * @return
+	 * @throws BPCSException
+	 */
+	static String generateImrHeaderName(ApplicationCore app, ApplicationManagementDao dao) throws BPCSException {
+
+		logger.info("generateImrHeaderName :" + app);
+		String str = "Contact Information is not found";
+		String useDelegateIndicator = app.getUseDelegateIndicator();
+		Contact cont = app.getContact();
+
+		if (useDelegateIndicator != null && useDelegateIndicator.toLowerCase().equals("y")) {
+			Delegate del = getDelegate(app.getApplicationNumber(), dao);
+			if (del != null) {
+//				String country = "CAN".equals(del.getCountryCode()) ? "" : del.getCountryCode();
+				str = cont.getContactFirstName() + " "
+						+ (cont.getContactMiddleName() == null ? "" : cont.getContactMiddleName() + " ")
+						+ cont.getContactLastName() + "\n" + "c/o " + del.getFirstName() + " "
+						+ (del.getMiddleName() == null ? "" : del.getMiddleName() + " ") + del.getLastName() ;
+//				
+//				str =  del.getFirstName() + " "
+//				+ (del.getMiddleName() == null ? "" : del.getMiddleName() + " ") + del.getLastName()
+//				+ "\n" + "c/o " +cont.getContactFirstName() + " "
+//				+ (cont.getContactMiddleName() == null ? "" : cont.getContactMiddleName() + " ")
+//				+ cont.getContactLastName()  ;
+//				String str1="ABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJ";
+//				String str2="ABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJ";
+//				str=str1+"\n" +"c/o:"+str2;
+//				if(!"".equalsIgnoreCase(country)){
+//					str=str+"\n" +country;
+//				}
+			
+			} else
+				throw new BPCSException("No Delegate Found", ErrorCodes.CONTACT_NOT_FOUND);
+		} else {
+			str = cont.getContactFirstName() + " "
+					+ (cont.getContactMiddleName() == null ? "" : cont.getContactMiddleName() + " ")
+					+ cont.getContactLastName() ;
+//			str="12345678901234567890123456789012345678901234567890";
+//			String country =cont.getCountryCode();
+//			if(country!=null&&!"CAN".equalsIgnoreCase(country)){
+//				str=str+ "\n" + country;
+//			}
+		}
+		return str;
+	}
+	
+
+	/**
+	 * Get delegate for application number
+	 * 
+	 * @param applicationNumber
+	 * @param dao
+	 * @return
+	 */
+	static Delegate getDelegate(String applicationNumber, ApplicationManagementDao dao) throws BPCSException {
+		if (applicationNumber != null && applicationNumber.length() >= 10)
+			applicationNumber = applicationNumber.substring(0, 9);
+		logger.info("applicationNumber :" + applicationNumber);
+		
+		return dao.findDelegate(applicationNumber);
+	}
+
+	/**
+	 * get language for application number
+	 * 
+	 * @param app
+	 * @param dao
+	 * @return
+	 * @throws BPCSException
+	 */
+	static String getLanguage(ApplicationCore app, ApplicationManagementDao dao) throws BPCSException {
+		String lang="EN";
+		String useDelegateIndicator = app.getUseDelegateIndicator();
+		if (useDelegateIndicator != null && useDelegateIndicator.toLowerCase().equals("y")) {
+			Delegate del = getDelegate(app.getApplicationNumber(), dao);
+			if (del != null) {
+				lang= del.getLanguagePref();
+			} else
+				throw new BPCSException("No Delegate Found", ErrorCodes.CONTACT_NOT_FOUND);
+		}else{
+			lang=app.getContact().getContactLanguagePref();
+		}
+		
+		if(lang==null||lang.trim().equals("")){
+			lang="EN";
+		}
+		
+		return lang;
+	}
+
+	/**
+	 * get full name of contact person
+	 * 
+	 * @param app
+	 * @return
+	 * @throws BPCSException
+	 */
+	static String getContactName(ApplicationCore app) throws BPCSException {
+		Contact cont = app.getContact();
+		String str = cont.getContactFirstName() + " "
+			+ (cont.getContactMiddleName() == null ? "" : cont.getContactMiddleName() + " ")
+			+ cont.getContactLastName();
+		
+		return str;
+	}
+}

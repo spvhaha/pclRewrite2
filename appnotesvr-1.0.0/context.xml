@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+	<!--         ************** Batch specific stuff **************** -->
+		
+	<bean name="sqlmpTranslator" class="persistence.core.sqlmp.SqlmpErrorCodesTranslator"/>
+	
+	<bean name="tandemDataSource" class="com.tandem.sqlmp.SQLMPDataSource" singleton="true">
+		<property name="transactionMode">EXTERNAL</property>
+		<property name="maxPoolSize">0</property>
+		<property name="maxStatements">40</property>
+	</bean>
+	   
+	<bean name="transactionProvider" class="util.transactions.impl.TandemTransactionProvider" singleton="true">
+		<property name="transactionFactory" beanRef="true">tandemJtaFactory</property>
+	</bean>
+	
+	<bean name="tandemJtaFactory" class="com.tandem.jta.JTAFactory" singleton="true"/>
+	
+	<bean name="tandemJdbcTemplate" class="persistence.core.JdbcTemplate" singleton="true">
+		<property name="dataSource" beanRef="true">tandemDataSource</property>
+		<property name="exceptionTranslater" beanRef="true">sqlmpTranslator</property>
+	</bean>
+	
+	<bean name="batchControlDao" class="util.batch.framework.persistence.impl.BatchControlDaoImpl" singleton="true">
+		<property name="template" beanRef="true">tandemJdbcTemplate</property>
+	</bean>
+	
+	<!--         ************** 	TAM wiring               **************** -->
+	
+	  
+	<bean name="tandemDao" class="persistence.tam.impl.TamDaoCachedTandemImpl" >
+		 <property name = "ds" beanRef="true">tandemDataSource</property>
+	</bean>
+	
+	<bean name="tamService" class="business.services.tam.impl.TamServiceImpl">
+		<property name="dao" beanRef="true">tandemDao</property>
+		<property name="sendServer" beanRef="true">tsmpServer</property>
+	</bean>
+			
+	<bean name="tsmpServer" definitionClass="util.tandem.pathway.TsmpServerBeanDefinition">                                       
+                <customDefinition property="prefix">tam</customDefinition>                    
+                <customDefinition property="propFilename">/settings.properties</customDefinition>
+    </bean> 
+
+			
+	<!--         **************      TTS wiring               **************** -->
+	
+	<bean name="transactionDs" class ="util.transactions.datasource.support.SqlMxTxDsp" singleton="true">
+        <property name="propertiesFileName">/settings.properties</property>
+	    <property name="prefix">sqlmx</property>
+	</bean>		
+	
+	<!--         **************      Held wiring               **************** -->
+
+   	
+      
+	<bean name="heldServiceDao" class="persistence.heldservice.impl.HeldServiceOracleDao" singleton="true">
+		<property name="dsp" beanRef="true">transactionDs</property>
+	</bean>
+	
+	<bean name="heldService" class="business.services.held.impl.HeldService" singleton="true">
+		<property name="dao" beanRef="true">heldServiceDao</property>
+	</bean>
+	
+	<bean name="dataServiceDao" class="persistence.ds.impl.DataServiceDao" singleton="true">
+		<property name="dsp" beanRef="true">transactionDs</property>
+	</bean>
+	
+	
+	<bean name="dataService" class="business.services.impl.DataService" singleton="true">
+		<property name="dataServiceDao" beanRef="true">dataServiceDao</property>
+	</bean>
+	
+	
+	<!--         ************** Business objects wiring     **************** -->
+	
+	<bean name="renewalFacade" class="business.objects.arf.HouseholdRenewalFacadeImpl" singleton="true">	
+		<property name="heldService" beanRef="true">heldService</property>
+		<property name="ttsNoteFormatter" beanRef="true">ttsNoteFormatter</property>
+		<property name="dataService" beanRef="true">dataService</property>
+	</bean>
+	
+	<bean name="ttsNoteFormatter" class="business.objects.arf.TtsNoteFormatter" singleton="true"/>
+	
+	
+	
+	<!--        *************** Use a proxy for interception ***************-->
+	
+	<bean name="txInterceptor" class="util.transactions.di.TransactionInterceptor" singleton="true">
+		<property name="txDatasource" beanRef="true">transactionDs</property>
+		<property name="pointCuts">holdPendingCra</property>
+	</bean>
+	
+	<bean name="proxy" definitionClass="util.di.beans.factory.support.ProxyBeanDefinition">
+		<customDefinition property="handlerObj" beanRef="true">txInterceptor</customDefinition>
+		<customDefinition property="implementationTargetObj" beanRef="true">renewalFacade</customDefinition>
+		<customDefinition property="interface">business.objects.arf.HouseholdRenewalFacade</customDefinition>
+		
+	</bean>
+	
+	
+	<!--         ************** BARF wiring     **************** -->
+	
+	<bean name="TDP003" class="batch.arf.AutomatedRenewalFeed">	
+		<property name="tamService" beanRef="true">tamService</property>
+		<property name="dataService" beanRef="true">dataService</property>
+	</bean>
+
+	<bean name="detailParameterValidator" class="util.validation.DetailParameterValidator" singleton="true">
+		<property name="validTmfCount">\d{1,3}</property>
+		<property name="validDisplayCount">\d{1,8}</property>
+		<property name="validControlReportLoc">(\\[a-zA-Z][a-zA-Z0-9]{0,3}[.][$][a-zA-Z][a-zA-Z0-9]{0,5}[.][a-zA-Z][a-zA-Z0-9]{0,7}[.][a-zA-Z])</property>
+		<property name="validRestartSubvol">[a-zA-Z][a-zA-Z0-9]{0,7}</property>
+        <property name="enableGmsPathmonNameValidation">false</property>  
+        <property name="enableExceptionReportLocValidation">true</property> 
+	</bean>	
+		
+</beans>

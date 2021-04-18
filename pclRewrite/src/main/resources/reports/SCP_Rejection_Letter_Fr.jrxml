@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SCP_Rejection" language="groovy" pageWidth="612" pageHeight="792" columnWidth="498" leftMargin="57" rightMargin="57" topMargin="43" bottomMargin="43" uuid="8d1c902f-3994-4d76-9107-ca5241b02488">
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.callouts" value="##Mon Jan 17 12:07:25 EST 2011"/>
+	<style name="Default" isDefault="true" fontName="Arial"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="lang" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["FR"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="address" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="program" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["scp"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\BPCS\\reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="benefitYear" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[9999]]></defaultValueExpression>
+	</parameter>
+	<parameter name="appNumber" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["AR-123-1234-12"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph01" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph02" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph03" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph04" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph00a" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph00b" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="familyMembers" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="singleThreshold" class="java.lang.String"/>
+	<parameter name="coupleThreshold" class="java.lang.String"/>
+	<parameter name="annualDeductible" class="java.lang.String"/>
+	<parameter name="ceilingAmount" class="java.lang.String"/>
+	<parameter name="endDate" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="73" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="498" height="73" uuid="b602f9ee-a0af-454b-884e-39b05b69155b"/>
+				<subreportParameter name="lang">
+					<subreportParameterExpression><![CDATA[$P{lang}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="address">
+					<subreportParameterExpression><![CDATA[$P{address}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="program">
+					<subreportParameterExpression><![CDATA[$P{program}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["LetterHeader.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Immediate">
+			<printWhenExpression><![CDATA[$P{paragraph00a} != null && $P{paragraph00a}.trim().length()>0]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="498" height="20" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="39475018-4878-451d-9a05-6eb9eba10b8f"/>
+				<textElement markup="styled">
+					<font size="12" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nous vous informons par la présente qu’après examen et évaluation de votre demande de participation au Programme de la quote-part pour les personnes âgées, Programme de médicaments de l'Ontario, pour l’année <style isBold='true'>"+$P{benefitYear}+"</style>, nous ne pouvons pas traiter votre demande pour les raisons suivantes : \n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20" splitType="Immediate">
+			<printWhenExpression><![CDATA[$P{paragraph00b} != null && $P{paragraph00b}.trim().length()>0]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="498" height="20" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="240cfb21-4ce8-4df5-ab5d-7443bf3bc71c"/>
+				<textElement markup="styled">
+					<font size="12" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nous vous informons par la présente que nous avons évalué votre admissibilité au Programme de la quote-part pour les personnes âgées, Programme de médicaments de l’Ontario pour l’année <style isBold='true'>"+$P{benefitYear}+"</style>, "
++ "et avons mis fin à votre participation au Programme de la quote-part pour les personnes âgées à partir de <style isBold='true'>"+$P{endDate}+"</style> pour la(les) raison(s) suivante(s) :\n\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="128" splitType="Immediate">
+			<printWhenExpression><![CDATA[($P{paragraph01} != null && $P{paragraph01}.trim().length()>0) || ($P{paragraph02} != null && $P{paragraph02}.trim().length()>0) || ($P{paragraph03} != null && $P{paragraph03}.trim().length()>0)]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="498" height="30" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="57ca9b19-090d-4592-84ff-974094c530a7">
+					<printWhenExpression><![CDATA[$P{paragraph01} != null && $P{paragraph01}.trim().length()>0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["La demande au titre du Programme de la quote-part pour les personnes âgées que vous avez présentée est une photocopie. Seuls les documents originaux sont valides. \n"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="30" width="498" height="46" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="5dc03317-a4f4-4052-99d3-de60d28fecdf">
+					<printWhenExpression><![CDATA[$P{paragraph02} != null && $P{paragraph02}.trim().length()>0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Vous n’avez pas 65 ans. Pour être admissible au Programme de la quote-part pour les personnes âgées, vous devez :"
++"\n\n•  avoir 65 ans ou plus (l’admissibilité commence le premier jour du mois qui suit votre 65ᵉ"
++"\n   anniversaire);"
++"\n•  vivre en Ontario; et"
++"\n•  détenir une carte Santé de l’Ontario valide."
+
++"\n\nVous pouvez soumettre une nouvelle demande un mois avant votre 65ᵉ anniversaire.\n"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="76" width="498" height="52" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="e71c961a-a83d-4a61-b07f-3479a9af37cc">
+					<printWhenExpression><![CDATA[$P{paragraph03} != null && $P{paragraph03}.trim().length()>0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Votre revenu annuel net excède le seuil de " + $P{singleThreshold} + " \$ pour une personne âgée célibataire. Puisque vous n’êtes pas admissible au programme, la première tranche de " + $P{annualDeductible} + " \$ des coûts admissibles est à votre charge. Puis, vous paierez des frais d'exécution d'ordonnance maximums de " + $P{ceilingAmount} + " \$ pour chaque médicament sur ordonnance admissible acquis pendant l’année du programme.\n"
+
++ "\n<style isBold='true'>Nota :</style> Les seuils de revenu net du Programme de la quote-part pour les personnes âgées sont examinés régulièrement, "
++ "puis ajustés afin d’être conformes au « Régime de revenu annuel garanti » (RRAG) du gouvernement de l’Ontario. "
++ "N’oubliez pas que vous pouvez présenter une nouvelle demande au Programme de la quote-part pour les personnes âgées pour les prochaines années du programme, "
++ "étant donné que vous pourriez répondre aux critères de participation au programme dans le futur. "
++ "Vous pouvez consulter le seuil de revenu net du Programme de la quote-part pour les personnes âgées pour l’année de programme à venir, "
++ "en faisant une recherche en ligne dans la plupart des moteurs de recherche sur le <style isUnderline='true'>Programme de la quote-part pour les personnes âgées du Programme de médicaments de l’Ontario</style>, "
++ "ou en contactant le Programme de la quote-part pour les personnes âgées, au 416 503-4586, ou 1 888 405-0405 en dehors de la région de Toronto.\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50" splitType="Immediate">
+			<printWhenExpression><![CDATA[$P{paragraph04} != null && $P{paragraph04}.trim().length()>0]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="498" height="50" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="299a6675-ec8f-48f7-860c-dd9bc36e1173">
+					<printWhenExpression><![CDATA[$P{paragraph04} != null && $P{paragraph04}.trim().length()>0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Votre revenu annuel net excède le seuil de " + $P{coupleThreshold} + " \$ pour un couple de personnes âgées.  "
++"Puisque vous n’êtes pas admissible au programme, la première tranche de " + $P{annualDeductible} + " \$ des coûts admissibles est à votre charge. Puis, vous paierez des frais d'exécution d'ordonnance maximums de " + $P{ceilingAmount} + " \$ pour chaque médicament sur ordonnance admissible acheté pendant l’année du programme.\n"
+
++ "\n<style isBold='true'>Nota :</style> Les seuils de revenu net du Programme de la quote-part pour les personnes âgées sont examinés régulièrement, "
++ "puis ajustés afin d’être conformes au « Régime de revenu annuel garanti » (RRAG) du gouvernement de l’Ontario. "
++ "N’oubliez pas que vous pouvez présenter une nouvelle demande au Programme de la quote-part pour les personnes âgées pour les prochaines années du programme, "
++ "étant donné que vous pourriez répondre aux critères de participation au programme dans le futur. "
++ "Vous pouvez consulter le seuil de revenu net du Programme de la quote-part pour les personnes âgées pour l’année de programme à venir, "
++ "en faisant une recherche en ligne dans la plupart des moteurs de recherche sur le <style isUnderline='true'>Programme de la quote-part pour les personnes âgées du Programme de médicaments de l’Ontario</style>, "
++ "ou en contactant le Programme de la quote-part pour les personnes âgées, au 416 503-4586, ou 1 888 405-0405 en dehors de la région de Toronto.\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="69" splitType="Immediate">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="1" width="498" height="68" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="f562bf1b-eca0-4c53-93f7-01ab456aefd1"/>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Les documents originaux relatifs au revenu que vous nous avez envoyés vous seront retournés si vous en faites la demande au cours de la période de 12 mois qui suit la date de la présente lettre. Si vous avez des questions ou besoin d’autres renseignements, contactez le Programme de la quote-part pour les personnes âgées au 416 503-4586 ou au \n1 888 405-0405 (en dehors de la région de Toronto); n’oubliez pas de vous munir du numéro de votre carte Santé lorsque vous appelez.\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="336" splitType="Immediate">
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="498" height="14" backcolor="#FFFFFF" uuid="136a3caf-43ee-4a9f-b262-b2a40cc623e5"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["En tant que cliente ou client du Programme de médicaments de l’Ontario (PMO), il est"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="14" width="498" height="14" backcolor="#FFFFFF" uuid="abc822d5-db15-4869-aef3-da09b0b80cce"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["important de garder votre adresse postale à jour auprès de ServiceOntario afin"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="28" width="498" height="14" backcolor="#FFFFFF" uuid="c90398b1-1bdc-43ff-9430-e2ea2df4cd6e"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["que nous puissions nous assurer que vous recevez en temps voulu les documents"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="42" width="498" height="14" backcolor="#FFFFFF" uuid="fb63d8e4-b566-4346-b544-99709a4b1502"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["figurant dans votre dossier du PMO. Vous pouvez changer votre adresse en ligne à"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="56" width="498" height="14" backcolor="#FFFFFF" uuid="888540e9-0566-4a3d-91c5-533f2348583f"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ServiceOntario.ca ou communiquer avec votre bureau local de ServiceOntario pour"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="70" width="498" height="14" backcolor="#FFFFFF" uuid="ca8bbcf1-c440-4d46-a438-d7aff8530e01"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["leur dire que vous déménagez. Pour trouver le bureau le plus proche, allez à"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="84" width="498" height="14" backcolor="#FFFFFF" uuid="0e27ff8b-29e5-494e-bc14-af6f9f52e21a"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ServiceOntario.ca/trouverservices, vérifiez dans les pages bleues de votre annuaire"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="98" width="498" height="14" backcolor="#FFFFFF" uuid="48143d66-43a7-4bf7-910d-755a53679db6"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["téléphonique à la rubrique « Santé » ou téléphonez à ServiceOntario au 1 800 268-1154"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="112" width="498" height="14" backcolor="#FFFFFF" uuid="1b0b017d-e112-4536-a59e-50911c0d90b8"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ou au 416 314-5518."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="126" width="498" height="14" backcolor="#FFFFFF" uuid="d04fa598-ac0a-4199-89a9-09185c0f9531"/>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\n"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="140" width="498" height="14" backcolor="#FFFFFF" uuid="ce0f272a-a332-4250-bd28-98669a86496a"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Les formulaires de demande, les documents pour le renouvellement de l’adhésion au"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="154" width="498" height="14" backcolor="#FFFFFF" uuid="6465596f-9932-4313-b654-caf0aa52047e"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["programme, ainsi que les reçus des médicaments sur ordonnance, doivent être"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="168" width="498" height="14" backcolor="#FFFFFF" uuid="8606cb4d-8e37-49be-a104-8434d1a9cd73"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["envoyés avant une date limite au cours de chaque année du programme. Les"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="182" width="498" height="14" backcolor="#FFFFFF" uuid="9aaf6f17-7c68-4cab-9ab9-07570ea2ba32"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["demandes de participation doivent être envoyées au Programme de la quote-part pour"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="196" width="498" height="14" backcolor="#FFFFFF" uuid="6b07fd46-fde2-4c55-ad37-db9a2deec7fa"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["les personnes âgées (le cachet de la poste faisant foi) au plus tard à la fin de la période"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="210" width="498" height="14" backcolor="#FFFFFF" uuid="61331e1e-924d-4d29-9b79-88cdb28a6bfe"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["de 60 jours qui suit la fin de l’année du programme (30 septembre). Tous les reçus des"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="224" width="498" height="14" backcolor="#FFFFFF" uuid="778590dd-3e02-463b-a1b6-8c016f861dc7"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["médicaments sur ordonnance et les autres documents doivent être envoyés au"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="238" width="498" height="14" backcolor="#FFFFFF" uuid="73f71804-a2dd-4c8a-b865-dd068a5a3c1b"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["programme (le cachet de la poste faisant foi) au plus tard à la fin de la période de 90"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="252" width="498" height="14" backcolor="#FFFFFF" uuid="6e598152-f129-4c32-b0fb-7a3603525c81"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["jours qui suit la fin de l’année du programme (31 octobre)."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="266" width="498" height="14" backcolor="#FFFFFF" uuid="12580ccb-dcfe-4c86-9d18-0c909bbc5293"/>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\n"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="280" width="498" height="14" backcolor="#FFFFFF" uuid="a5ffc99f-b33b-40cf-b428-97b6a81b9c65"/>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\n"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="294" width="498" height="14" backcolor="#FFFFFF" uuid="7e6da696-6a55-4fbd-be49-db3b3670d105"/>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Merci."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="308" width="498" height="14" backcolor="#FFFFFF" uuid="440d9ebe-e466-4528-9bb7-bf4774b967e3"/>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\n"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="322" width="498" height="14" backcolor="#FFFFFF" uuid="4b33c464-0b17-4886-af1a-930701ef658c"/>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Programme de la quote-part pour les personnes âgées"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="397" y="17" width="80" height="20" uuid="3d0014ff-ddda-4cbf-af5c-6a3f50487771"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="479" y="17" width="53" height="20" uuid="4ab0ddcd-bc11-4919-b6b5-ce351341c8a2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

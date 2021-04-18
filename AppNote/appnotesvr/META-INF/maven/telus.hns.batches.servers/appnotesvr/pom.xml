@@ -1,0 +1,106 @@
+
+<!-- ** -->
+<!-- ** APPNOTESVR 1.0.0 (APPNOTESVR) ** -->
+<!-- ** -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+   http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>telus.hns.batches</groupId>
+		<artifactId>batch-base</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+
+
+	<!-- ** APPNOTESVR JAR ** -->
+
+	<groupId>telus.hns.batches.servers</groupId>
+	<artifactId>appnotesvr</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0</version>
+	<name>Insert appnote APPNOTESVR Server </name>
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<dependencies>
+
+		<!-- ** COMMON JARS ** -->
+
+		<dependency>
+			<groupId>telus.hns.batches.common</groupId>
+			<artifactId>utilities</artifactId>
+			<version>4.1.0</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>telus.hns.batches.common</groupId>
+			<artifactId>persistenceframework</artifactId>
+			<version>5.0.0</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>telus.hns.batches.common</groupId>
+			<artifactId>tandemutils</artifactId>
+			<version>2.0.0</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>telus.hns.batches.common</groupId>
+			<artifactId>pserverutils</artifactId>
+			<version>1.0.3</version>
+			<type>jar</type>
+		</dependency>
+
+
+		<dependency>
+			<groupId>telus.hns.batches.common</groupId>
+			<artifactId>dataservice</artifactId>
+			<version>12.0.0</version>
+			<type>jar</type>
+		</dependency>
+		<!-- ** THIRD PARTY JARS ** -->
+
+		<dependency>
+			<groupId>com.hp.nonstop</groupId>
+			<artifactId>jsqlconnect</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hp.nonstop</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hp.nonstop</groupId>
+			<artifactId>t4sqlmx</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hp.nonstop</groupId>
+			<artifactId>tdmext</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+		</dependency>
+
+	</dependencies>
+
+
+	<!-- ** BUILD ** -->
+
+	<!-- Inherits properties from batches/pom.xml -->
+
+</project>

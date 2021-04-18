@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SCP_Rejection" language="groovy" pageWidth="612" pageHeight="792" columnWidth="498" leftMargin="57" rightMargin="57" topMargin="43" bottomMargin="43" uuid="b3f855f5-7a04-4cf5-b383-599a4be4274a">
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.callouts" value="##Mon Jan 17 12:07:25 EST 2011"/>
+	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
+	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
+	<property name="net.sf.jasperreports.export.pdf.metadata.title" value="SCP_Rejection_Letter_En"/>
+	<property name="net.sf.jasperreports.export.pdf.display.metadata.title" value="true"/>
+	<style name="Default" isDefault="true" fontName="Arial"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="lang" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["EN"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="address" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="program" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["scp"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\BPCS\\reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="benefitYear" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[9999]]></defaultValueExpression>
+	</parameter>
+	<parameter name="appNumber" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["AR-123-1234-12"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph01" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph02" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph03" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph04" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph00a" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paragraph00b" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="familyMembers" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="singleThreshold" class="java.lang.String"/>
+	<parameter name="coupleThreshold" class="java.lang.String"/>
+	<parameter name="annualDeductible" class="java.lang.String"/>
+	<parameter name="ceilingAmount" class="java.lang.String"/>
+	<parameter name="endDate" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="73" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="498" height="73" uuid="e920b538-95b1-4398-8ac8-78d1af8a3ce5"/>
+				<subreportParameter name="lang">
+					<subreportParameterExpression><![CDATA[$P{lang}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="address">
+					<subreportParameterExpression><![CDATA[$P{address}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="program">
+					<subreportParameterExpression><![CDATA[$P{program}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["LetterHeader.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Immediate">
+			<printWhenExpression><![CDATA[$P{paragraph00a} != null && $P{paragraph00a}.trim().length()>0]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="498" height="38" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="70cbde33-836e-4382-a580-d1ff99253426"/>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["This is to inform you that after reviewing and assessing your Ontario Drug Benefit (ODB) Seniors Co-Payment Program (SCP) application for benefit year <style isBold='true'>"+$P{benefitYear}+"</style>, we cannot process it for the following reason(s):\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="38" splitType="Immediate">
+			<printWhenExpression><![CDATA[$P{paragraph00b} != null && $P{paragraph00b}.trim().length()>0]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="498" height="38" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="ac05c5fb-315c-4cb2-80d6-b08211a06446"/>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["This is to inform you that we have assessed your Ontario Drug Benefit (ODB) Seniors Co-Payment Program (SCP) eligibility for benefit year <style isBold='true'>"+$P{benefitYear}+"</style>, and have terminated your enrolment in the SCP as of <style isBold='true'>"+$P{endDate}+"</style> for the following reason(s):\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="128" splitType="Immediate">
+			<printWhenExpression><![CDATA[($P{paragraph01} != null && $P{paragraph01}.trim().length()>0) || ($P{paragraph02} != null && $P{paragraph02}.trim().length()>0) || ($P{paragraph03} != null && $P{paragraph03}.trim().length()>0)]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="498" height="30" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="cdec0f5a-d2af-4158-ade3-b02a752feb3d">
+					<printWhenExpression><![CDATA[$P{paragraph01} != null && $P{paragraph01}.trim().length()>0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["The Seniors Co-Payment Program Application you submitted is a photocopy. Only the original Application is considered valid.\n"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="30" width="498" height="46" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="a07952e8-17d8-46c6-a99c-60ecc190c111">
+					<printWhenExpression><![CDATA[$P{paragraph02} != null && $P{paragraph02}.trim().length()>0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["You are not 65 years of age. To be eligible for Seniors Co-Payment Program prescription drug benefits, a person must:"
++"\n\n•  be 65 years of age or older (i.e. eligibility begins on the first day of the month, following"
++"\n   your 65th birthday),"
++"\n•  live in Ontario, and"
++"\n•  have a valid Ontario Health Card."
+
++"\n\nYou may re-apply one month prior to your 65th birthday.\n"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="76" width="498" height="52" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="f6cdf37b-d338-4a1a-a53c-b8d75bf28407">
+					<printWhenExpression><![CDATA[$P{paragraph03} != null && $P{paragraph03}.trim().length()>0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Your annual net income exceeds the threshold of \$" + $P{singleThreshold} + " for a single senior. Since you do not qualify for the program, you will be required to pay the first \$" + $P{annualDeductible} + " in eligible prescription costs. After that, you will pay up to a maximum of \$" + $P{ceilingAmount} + " ODB dispensing fee on every eligible prescription you have filled during the benefit year.\n"
++ "\n<style isBold='true'>Note:</style> The SCP’s net income thresholds are reviewed periodically and are adjusted to be aligned with the Ontario Government’s “Guaranteed Annual Income System” (GAINS). "
++ "Please consider re-applying to the SCP in future benefit years as you may qualify for enrollment in the program in the future. "
++ "You can review the SCP’s net income threshold for the upcoming benefit year by checking online through most search engines for "
++ "<style isUnderline='true'>Ontario Drug Benefit Seniors Co-Payment</style> or by calling the Seniors Co-Payment Program at 416-503-4586, or 1-888-405-0405 outside the Toronto area.\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50" splitType="Immediate">
+			<printWhenExpression><![CDATA[$P{paragraph04} != null && $P{paragraph04}.trim().length()>0]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="498" height="50" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="869f1e51-0017-4552-9b51-b78c54e41cf2">
+					<printWhenExpression><![CDATA[$P{paragraph04} != null && $P{paragraph04}.trim().length()>0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Your annual net income exceeds the threshold of \$" + $P{coupleThreshold} + " for a senior couple. Since you do not qualify for the program, you will be required to pay the first \$" + $P{annualDeductible} + " in eligible prescription costs. After that, you will pay up to a maximum of \$" + $P{ceilingAmount} + " ODB dispensing fee on every eligible prescription you have filled during the benefit year.\n"
++ "\n<style isBold='true'>Note:</style> The SCP’s net income thresholds are reviewed periodically and are adjusted to be aligned with the Ontario Government’s “Guaranteed Annual Income System” (GAINS). "
++ "Please consider re-applying to the SCP in future benefit years as you may qualify for enrollment in the program in the future. "
++ "You can review the SCP’s net income threshold for the upcoming benefit year by checking online through most search engines for "
++ "<style isUnderline='true'>Ontario Drug Benefit Seniors Co-Payment</style> or by calling the Seniors Co-Payment Program at 416-503-4586, or 1-888-405-0405 outside the Toronto area.\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="69" splitType="Immediate">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="1" width="498" height="68" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="7ee14688-e9ea-4a29-af24-b2141915973e"/>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Any original income documentation, which you have mailed to us, will be returned to you upon request. The request must be made within a 12-month period of the date of this letter."
++"\nIf you have any questions or need more information, please have your Ontario Health Card number ready when contacting the Seniors Co-Payment Program at 416-503-4586, or 1-888-405-0405 outside the Toronto area.\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="280" splitType="Immediate">
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="498" height="16" backcolor="#FFFFFF" uuid="dad8e708-52e3-470c-99d8-6b94f6c98054"/>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>As an Ontario Drug Benefit (ODB) client it is important that you keep your mailing</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="16" width="498" height="16" backcolor="#FFFFFF" uuid="7bed5363-0e03-49ac-b6d1-5f3adbdc6462"/>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>address up to date with ServiceOntario so that we can ensure you receive materials on</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="32" width="498" height="16" backcolor="#FFFFFF" uuid="faac2daf-1484-4983-af85-9a42418e4330"/>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>your ODB file in a timely manner. You may change your address online at</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="48" width="498" height="16" backcolor="#FFFFFF" uuid="dc93478d-07fa-49c1-b498-1ebe08e91dcf"/>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>ServiceOntario.ca or contact your local ServiceOntario office to tell them you are</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="64" width="498" height="16" backcolor="#FFFFFF" uuid="f9b65d2b-2a0d-403d-b11b-ae8728098803"/>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>moving. For your nearest office go to ServiceOntario.ca/findservices, check the blue</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="80" width="498" height="16" backcolor="#FFFFFF" uuid="700a18d8-6736-4522-bcf2-85631cefc06e"/>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>pages of your telephone directory under 'Health' or call ServiceOntario at</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="96" width="498" height="16" backcolor="#FFFFFF" uuid="d45084a2-acc5-4100-9f41-67fafc69149a"/>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>1-800-268-1154 or 416-314-5518.</style>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="112" width="498" height="16" backcolor="#FFFFFF" uuid="a843f909-b120-42c9-83cb-2c11fd30a863"/>
+				<textElement markup="styled">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\n"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="112" width="498" height="16" backcolor="#FFFFFF" uuid="fcf5a8e7-d605-4262-be08-4472efee6847">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>There is a deadline for submission of applications, renewal documentation and</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="128" width="498" height="16" backcolor="#FFFFFF" uuid="61eeb06e-1b34-475c-bd92-e7c97ba12c3b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>prescription drug receipts each benefit year. In order to be considered for enrolment,</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="144" width="498" height="16" backcolor="#FFFFFF" uuid="3da75302-b846-4e6b-9fc9-46fbdfdb41ce">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>applications must be received by the SCP or postmarked by Canada Post Corporation</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="160" width="498" height="16" backcolor="#FFFFFF" uuid="488dd469-0ae7-43ff-999f-a22d6e8665b8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>no later than 60 days after the end of the benefit year (i.e. by September 30th). All SCP</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="176" width="498" height="16" backcolor="#FFFFFF" uuid="aba298ba-2ce6-411a-a121-423288225f32">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>prescription drug receipts and other documentation must be received by the SCP or</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="192" width="498" height="16" backcolor="#FFFFFF" uuid="c4f79dfc-4135-43ef-8d6b-4654dbac2b90">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>postmarked by Canada Post Corporation no later than 90 days after the end of the</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="208" width="498" height="16" backcolor="#FFFFFF" uuid="5b38a5c6-7876-4feb-a082-3f9754f4ebee">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<style isBold='true'>benefit year (i.e. by October 31st).</style>"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="224" width="498" height="12" backcolor="#FFFFFF" uuid="2b628d61-c602-4ce8-ad02-49a867b516b9"/>
+				<textElement markup="styled">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\n"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="236" width="498" height="12" backcolor="#FFFFFF" uuid="f4eee145-21bc-4ee9-9998-5064524b849b"/>
+				<textElement markup="styled">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\n"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="236" width="498" height="16" backcolor="#FFFFFF" uuid="1e4d7387-6f3f-45b2-8eea-1b2408dc7857">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Thank you."]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="248" width="498" height="14" backcolor="#FFFFFF" uuid="3d02f476-b1b9-4b4a-9c49-0b84ee5d747e">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\n"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="262" width="498" height="14" backcolor="#FFFFFF" uuid="7119dbc1-374b-47bb-abff-fc4b674e5246">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="styled">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Seniors Co-Payment Program"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="363" y="17" width="80" height="20" uuid="d08adbda-bf40-4a86-b9af-9ad0391cd1b9"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="445" y="17" width="53" height="20" uuid="b84bba5b-f4fb-4d4a-acfe-e796ec83f72b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
